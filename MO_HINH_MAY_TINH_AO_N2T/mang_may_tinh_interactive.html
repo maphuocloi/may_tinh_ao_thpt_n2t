@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thiết bị mạng</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header class="site-header">
+  <div class="brand">Trường THPT Nguyễn Trung Trực 1</div>
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="may_tinh_ao_interactive.html">Bên trong máy tính</a>
+    <a href="cong_ket_noi_interactive.html">Các loại cổng kết nối</a>
+    <a href="ngoai_vi_interactive.html">Thiết bị ngoại vi</a>
+    <a href="mang_may_tinh_interactive.html" class="active">Thiết bị mạng</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Thiết bị kết nối mạng</h2>
+  <p>Thiết bị dùng để kết nối máy tính và Internet: Modem, Router, Switch, Hub, Access Point.</p>
+
+  <div class="grid">
+    <div class="device" data-key="modem"><img src="images/modem.png" alt="Modem"><h4>Modem</h4></div>
+    <div class="device" data-key="router"><img src="images/router.png" alt="Router"><h4>Router</h4></div>
+    <div class="device" data-key="switch"><img src="images/switch.png" alt="Switch"><h4>Switch</h4></div>
+    <div class="device" data-key="hub"><img src="images/hub.png" alt="Hub"><h4>Hub</h4></div>
+    <div class="device" data-key="ap"><img src="images/access_point.png" alt="access_point"><h4>Access point</h4></div>
+    <div class="device" data-key="repeater"><img src="images/repeater.png" alt="Repeater"><h4>Repeater</h4></div>
+    <div class="device" data-key="firewall"><img src="images/firewall.png" alt="Firewall"><h4>Firewall</h4></div>
+    <div class="device" data-key="bridge"><img src="images/bridge.png" alt="Bridge"><h4>Bridge</h4></div>
+    <div class="device" data-key="gateway"><img src="images/gateway.png" alt="Gateway"><h4>Gateway</h4></div>
+    <div class="device" data-key="nic"><img src="images/nic.png" alt="NIC"><h4>NIC - card mạng</h4></div>
+    <div class="device" data-key="rj45"><img src="images/rj45.png" alt="RJ45"><h4>Giắc cắm RJ45</h4></div>
+    <div class="device" data-key="oip"><img src="images/oip.png" alt="NIC"><h4>OIP - Cáp đồng trục</h4></div>
+    <div class="device" data-key="utp"><img src="images/utp.png" alt="NIC"><h4>UTP - Cáp xoắn đôi</h4></div>
+    <div class="device" data-key="fiber_optic"><img src="images/fiber_optic.png" alt="NIC"><h4>fiber_optic - Cáp quang</h4></div>
+  </div>
+
+  <div id="info" class="info-box">Nhấp vào một thiết bị để xem thông tin</div>
+
+  <!-- Nút mở bài kiểm tra -->
+  <div style="text-align:center; margin-top:30px;">
+    <button id="open-quiz" class="btn" style="padding:10px 20px; background:#4CAF50; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer;">
+    🧠 Câu hỏi củng cố — Thiết bị mạng
+    </button>
+  </div>
+
+  <!-- Hộp bài kiểm tra (ẩn ban đầu) -->
+  <div id="quiz-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999;">
+    <div style="background:white; width:80%; max-width:700px; margin:5% auto; padding:20px; border-radius:12px; box-shadow:0 0 20px rgba(0,0,0,0.3); overflow-y:auto; max-height:80vh;">
+      <h3 style="text-align:center;">🧠 Câu hỏi củng cố — Thiết bị mạng</h3>
+      <div id="quiz-container"></div>
+      <div style="text-align:center; margin-top:20px;">
+      <button id="check-quiz" class="btn" style="margin-right:10px;">Kiểm tra kết quả</button>
+      <button id="close-quiz" class="btn" style="background:#ccc;">Đóng</button>
+      </div>
+      <div id="quiz-result" style="text-align: center; margin-top:10px; font-weight:bold;"></div>
+    </div>
+</div>
+
+</main>
+
+<footer style="text-align:center;" class="site-footer"><p>© 2025 Mã Phước Lợi, giáo viên Trường THPT Nguyễn Trung Trực 1</p></footer>
+<div id="chatbot-bubble"></div>
+
+<script src="js/script.js"></script>
+
+
+<script>
+async function loadQuiz() {
+  //const res = await fetch('quiz-mang.json');
+  //const data = await res.json();
+  const data = [
+      { q: "Thiết bị nào dùng để kết nối nhiều máy tính trong cùng mạng LAN?", opts: ["Router", "Switch", "Modem", "Hub"], a: 1 },
+      { q: "Thiết bị nào dùng để chia sẻ kết nối Internet cho nhiều thiết bị?", opts: ["Hub", "Router", "Repeater", "Access Point"], a: 1 },
+      { q: "Thiết bị nào chuyển đổi tín hiệu giữa mạng nhà cung cấp và mạng nội bộ?", opts: ["Switch", "Modem", "CPU", "PSU"], a: 1 },
+      { q: "Router có chức năng chính là?", opts: ["Định tuyến gói tin", "Lưu trữ dữ liệu", "In ấn", "Tăng tốc ram"], a: 0},
+      { q: "Switch dùng để?", opts: ["Kết nối các thiết bị trong LAN", "Tạo wifi", "In ấn", "Lưu trữ"], a: 0},
+      { q: "AP (Access Point) dùng để?", opts: ["Phát wifi", "Cấu hình CPU", "Lưu trữ", "In ấn"], a: 0},
+      { q: "Hub có chức năng?", opts: ["Chia tín hiệu mạng cấp phát đến nhiều cổng", "Xử lý đồ họa", "Lưu dữ liệu", "In ấn"], a: 0},
+      { q: "Router khác modem ở điểm?", opts: ["Modem kết nối ISP, router định tuyến nội bộ", "Router là nguồn", "Router là màn hình", "Modem là bàn phím"], a: 0},
+      { q: "Thiết bị nào cung cấp DHCP thường xuyên?", opts: ["Switch", "Router", "HDD", "PSU"], a: 1},
+      { q: "Kết nối mạng có thể dùng cáp gì?", opts: ["Ethernet (RJ45)", "SATA", "USB-C", "PS/2"], a: 0},
+      ]; 
+  
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+
+  data.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-item';
+    div.style.marginBottom = '12px';
+    div.innerHTML = `
+      <p><b>Câu ${i + 1}:</b> ${q.q}</p>
+      ${q.opts.map((opt, j) => `
+        <label style="display:block; margin-left:10px;">
+          <input type="radio" name="q${i}" value="${j}"> ${opt}
+        </label>
+      `).join('')}
+    `;
+    container.appendChild(div);
+  });
+
+  document.getElementById('check-quiz').addEventListener('click', () => {
+    let correct = 0;
+    data.forEach((q, i) => {
+      const checked = document.querySelector(`input[name="q${i}"]:checked`);
+      if (checked && Number(checked.value) === q.a) correct++;
+    });
+    document.getElementById('quiz-result').innerHTML =
+      `✅ Bạn trả lời đúng ${correct}/${data.length} câu.`;
+  });
+}
+
+document.getElementById('open-quiz').addEventListener('click', () => {
+  document.getElementById('quiz-modal').style.display = 'block';
+  loadQuiz();
+});
+
+document.getElementById('close-quiz').addEventListener('click', () => {
+  document.getElementById('quiz-modal').style.display = 'none';
+});
+</script>
+
+</body>
+</html>

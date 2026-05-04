@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Các cổng kết nối</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header class="site-header">
+  <div class="brand">Trường THPT Nguyễn Trung Trực 1</div>
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="may_tinh_ao_interactive.html">Bên trong máy tính</a>
+    <a href="cong_ket_noi_interactive.html"class="active">Các loại cổng kết nối</a>
+    <a href="ngoai_vi_interactive.html">Thiết bị ngoại vi</a>
+    <a href="mang_may_tinh_interactive.html">Thiết bị mạng</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Các cổng kết nối của một máy tính</h2>
+  <p>Những thiết bị như màn hình, bàn phím, chuột, máy in, loa, tai nghe,... điều được kết nối với máy tính qua một cổng nhất định</p>
+
+  <div class="grid">
+    <div class="device" data-key="audio_port"><img src="images/Audio-Port.png" alt="Cổng Audio"><h4>Cổng Audio</h4></div>
+    <div class="device" data-key="com_port"><img src="images/COM-Port.png" alt="Cổng COM"><h4>Cổng COM</h4></div>
+    <div class="device" data-key="hdmi_port"><img src="images/hdmi-Port.png" alt="Cổng HDMI"><h4>Cổng HDMI</h4></div>
+    <div class="device" data-key="ps2_port"><img src="images/PS2-Port.png" alt="Cổng PS2"><h4>Cổng PS2</h4></div>
+    <div class="device" data-key="lpt_port"><img src="images/LPT_Port.png" alt="Cổng LPT"><h4>Cổng LPT</h4></div>
+    <div class="device" data-key="usb_port"><img src="images/USB-Port.png" alt="Cổng USB"><h4>Cổng USB</h4></div>
+    <div class="device" data-key="vga_port"><img src="images/VGA-Port.png" alt="Cổng VGA"><h4>Cổng VGA</h4></div>
+    <div class="device" data-key="lan_port"><img src="images/lan-port.png" alt="Cổng LAN"><h4>Cổng LAN</h4></div>
+    <div class="device" data-key="display_port"><img src="images/display-port.png" alt="Cổng Display"><h4>Cổng Displayport</h4></div>
+    <div class="device" data-key="hdmi_cable"><img src="images/hdmi-cable.png" alt="Cáp HDMI"><h4>Cáp HDMI</h4></div>
+    <div class="device" data-key="vga_cable"><img src="images/vga-cable.png" alt="Cáp VGA"><h4>Cáp VGA</h4></div>
+    <div class="device" data-key="displayport_cable"><img src="images/displayport-cable.png" alt="Cáp DisplayPort"><h4>Cáp Displayport</h4></div>
+  </div>
+
+  <div id="info" class="info-box">Nhấp vào một cổng để xem thông tin</div>
+
+  <!-- Nút mở bài kiểm tra -->
+  <div style="text-align:center; margin-top:30px;">
+    <button id="open-quiz" class="btn" style="padding:10px 20px; background:#4CAF50; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer;">
+    🧠 Câu hỏi củng cố — Các cổng kết nối
+    </button>
+  </div>
+
+  <!-- Hộp bài kiểm tra (ẩn ban đầu) -->
+  <div id="quiz-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999;">
+    <div style="background:white; width:80%; max-width:700px; margin:5% auto; padding:20px; border-radius:12px; box-shadow:0 0 20px rgba(0,0,0,0.3); overflow-y:auto; max-height:80vh;">
+      <h3 style="text-align:center;">🧠 Câu hỏi củng cố — Các cổng kết nối</h3>
+      <div id="quiz-container"></div>
+      <div style="text-align:center; margin-top:20px;">
+      <button id="check-quiz" class="btn" style="margin-right:10px;">Kiểm tra kết quả</button>
+      <button id="close-quiz" class="btn" style="background:#ccc;">Đóng</button>
+      </div>
+      <div id="quiz-result" style="text-align: center; margin-top:10px; font-weight:bold;"></div>
+    </div>
+  </div>
+</main>
+
+<footer style="text-align:center;" class="site-footer"><p>© 2025 Mã Phước Lợi, giáo viên Trường THPT Nguyễn Trung Trực 1</p></footer>
+<div id="chatbot-bubble"></div>
+<script src="js/script.js"></script>
+
+<script>
+async function loadQuiz() {
+  //const res = await fetch('quiz-mang.json');
+  //const data = await res.json();
+  const data = [
+      {
+        q: "Cổng Audio thường dùng để làm gì?", 
+        opts: ["Kết nối màn hình", "Kết nối tai nghe và micro", "Kết nối máy in", "Kết nối bàn phím"],
+        a: 1
+      },
+      {
+        q: "Cổng COM (cổng nối tiếp) thường được sử dụng cho thiết bị nào sau đây?",
+        opts: ["Chuột PS/2", "Máy in cũ hoặc thiết bị công nghiệp", "Loa ngoài", "Ổ cứng ngoài"],
+        a: 1
+      },
+      {
+        q: "Cổng HDMI có chức năng chính là gì?",
+        opts: ["Truyền tín hiệu âm thanh và hình ảnh chất lượng cao", "Chỉ truyền tín hiệu âm thanh", "Kết nối thiết bị lưu trữ", "Kết nối nguồn điện"],
+        a: 0
+      },
+      {
+        q: "Cổng PS/2 được dùng để kết nối với thiết bị nào?",
+        opts: ["Bàn phím và chuột", "Màn hình", "Máy in", "USB Drive"],
+        a: 0
+      },
+      {
+        q: "Cổng LPT (cổng song song) chủ yếu dùng để:",
+        opts: ["Kết nối bàn phím", "Kết nối chuột", "Kết nối máy in đời cũ", "Kết nối mạng LAN"],
+        a: 2
+      },
+      { 
+        q: "Cổng USB có ưu điểm gì nổi bật?",
+        opts: ["Chỉ truyền dữ liệu", "Truyền dữ liệu và cấp nguồn cho thiết bị", "Chỉ cấp nguồn", "Chỉ kết nối chuột và bàn phím"],
+        a: 1
+      },
+      {
+        q: "Cổng VGA được sử dụng để kết nối với:",
+        opts: ["Máy in", "Màn hình hoặc máy chiếu", "Chuột", "Thiết bị âm thanh"],
+        a: 1
+      },
+      {
+        q: "Cổng HDMI thường thay thế cho loại cổng nào trong việc xuất hình ảnh?",
+        opts: ["USB", "VGA", "PS/2", "COM"],
+        a: 1
+      },
+      {
+        q: "Cổng USB Type-C có đặc điểm gì khác với các loại USB trước đây?",
+        opts: ["Không thể đảo chiều cắm", "Chỉ dùng cho thiết bị di động", "Có thể đảo chiều và truyền dữ liệu tốc độ cao", "Chỉ truyền điện, không truyền dữ liệu"],
+        a: 2
+      },
+      {
+        q: "Trong các loại cổng sau, cổng nào dần bị thay thế trong các máy tính hiện đại?",
+        opts: ["USB", "HDMI", "PS/2 và LPT", "USB Type-C"],
+        a: 2
+      }
+      ];
+
+
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+
+  data.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-item';
+    div.style.marginBottom = '12px';
+    div.innerHTML = `
+      <p><b>Câu ${i + 1}:</b> ${q.q}</p>
+      ${q.opts.map((opt, j) => `
+        <label style="display:block; margin-left:10px;">
+          <input type="radio" name="q${i}" value="${j}"> ${opt}
+        </label>
+      `).join('')}
+    `;
+    container.appendChild(div);
+  });
+
+  document.getElementById('check-quiz').addEventListener('click', () => {
+    let correct = 0;
+    data.forEach((q, i) => {
+      const checked = document.querySelector(`input[name="q${i}"]:checked`);
+      if (checked && Number(checked.value) === q.a) correct++;
+    });
+    document.getElementById('quiz-result').innerHTML =
+      `✅ Bạn trả lời đúng ${correct}/${data.length} câu.`;
+  });
+}
+
+document.getElementById('open-quiz').addEventListener('click', () => {
+  document.getElementById('quiz-modal').style.display = 'block';
+  loadQuiz();
+});
+
+document.getElementById('close-quiz').addEventListener('click', () => {
+  document.getElementById('quiz-modal').style.display = 'none';
+});
+</script>
+
+</body>
+</html>

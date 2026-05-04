@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thiết bị ngoại vi</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header class="site-header">
+  <div class="brand">Trường THPT Nguyễn Trung Trực 1</div>
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="may_tinh_ao_interactive.html">Bên trong máy tính</a>
+    <a href="cong_ket_noi_interactive.html">Các loại cổng kết nối</a>
+    <a href="ngoai_vi_interactive.html" class="active">Thiết bị ngoại vi</a>
+    <a href="mang_may_tinh_interactive.html">Thiết bị mạng</a>
+  </nav>
+</header>
+
+<main class="container">
+  <h2>Thiết bị ngoại vi</h2>
+  <p>Những gì kết nối bên ngoài: màn hình, bàn phím, chuột, máy in, loa, tai nghe, thiết bị lưu trữ di động...</p>
+
+  <div class="grid">
+    <div class="device" data-key="monitor"><img src="images/monitor.png" alt="Màn hình"><h4>Màn hình</h4></div>
+    <div class="device" data-key="keyboard"><img src="images/keyboard.png" alt="Bàn phím"><h4>Bàn phím</h4></div>
+    <div class="device" data-key="mouse"><img src="images/mouse.png" alt="Chuột"><h4>Chuột</h4></div>
+    <div class="device" data-key="printer"><img src="images/printer.png" alt="Máy in"><h4>Máy in</h4></div>
+    <div class="device" data-key="speaker"><img src="images/speaker.png" alt="Loa"><h4>Loa</h4></div>
+    <div class="device" data-key="headphone"><img src="images/headphone.png" alt="Tai nghe"><h4>Tai nghe</h4></div>
+    <div class="device" data-key="scanner"><img src="images/scanner.png" alt="Máy quét"><h4>Máy quét</h4></div>
+    <div class="device" data-key="webcam"><img src="images/webcam.png" alt="Camera máy tính"><h4>Camera máy tính</h4></div>
+    <div class="device" data-key="microphone"><img src="images/microphone.png" alt="Microphone (Micro thu âm)"><h4>Microphone (Micro thu âm)</h4></div>
+    <div class="device" data-key="barcode_scanner"><img src="images/barcode_scanner.png" alt="Barcode Scanner (Máy quét mã vạch)"><h4>Barcode Scanner (Máy quét mã vạch)</h4></div>
+    </div>
+
+  <div id="info" class="info-box">Nhấp vào một thiết bị để xem thông tin</div>
+
+  <!-- Nút mở bài kiểm tra -->
+  <div style="text-align:center; margin-top:30px;">
+    <button id="open-quiz" class="btn" style="padding:10px 20px; background:#4CAF50; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer;">
+    🧠 Câu hỏi củng cố — Thiết bị ngoại vi
+    </button>
+  </div>
+
+  <!-- Hộp bài kiểm tra (ẩn ban đầu) -->
+  <div id="quiz-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999;">
+    <div style="background:white; width:80%; max-width:700px; margin:5% auto; padding:20px; border-radius:12px; box-shadow:0 0 20px rgba(0,0,0,0.3); overflow-y:auto; max-height:80vh;">
+      <h3 style="text-align:center;">🧠 Câu hỏi củng cố — Thiết bị ngoại vi</h3>
+      <div id="quiz-container"></div>
+      <div style="text-align:center; margin-top:20px;">
+      <button id="check-quiz" class="btn" style="margin-right:10px;">Kiểm tra kết quả</button>
+      <button id="close-quiz" class="btn" style="background:#ccc;">Đóng</button>
+      </div>
+      <div id="quiz-result" style="text-align: center; margin-top:10px; font-weight:bold;"></div>
+    </div>
+  </div>
+</main>
+
+<footer style="text-align:center;" class="site-footer"><p>© 2025 Mã Phước Lợi, giáo viên Trường THPT Nguyễn Trung Trực 1</p></footer>
+<div id="chatbot-bubble"></div>
+<script src="js/script.js"></script>
+
+<script>
+async function loadQuiz() {
+  //const res = await fetch('quiz-mang.json');
+  //const data = await res.json();
+  const data = [
+      {q: "Thiết bị nào là thiết bị đầu vào?", opts: ["Màn hình", "Bàn phím", "Loa", "Ổ cứng" ], a: 1},
+      {q: "Màn hình kết nối bằng cổng nào thường thấy?", opts: ["HDMI/VGA", "SATA", "PS/2", "IDE"], a: 0},
+      {q: "Thiết bị nào dùng để in tài liệu?", opts: ["Chuột", "Máy in", "Tai nghe", "Bàn phím"], a: 1},
+      {q: "Loa dùng để làm gì?", opts: ["Phát âm thanh", "Lưu trữ", "Xử lý", "In ấn"], a: 0},
+      {q: "Tai nghe kết nối thường qua?", opts: ["USB/3.5mm", "SATA", "PCIe", "IDE"], a: 0},
+      {q: "Bàn phím có thể kết nối bằng?", opts: ["USB/PS2", "SATA", "VGA", "RJ45"], a: 0},
+      {q: "Ổ đĩa di động thường dùng cổng?",opts: ["USB", "VGA", "PS/2", "IDE"], a: 0},
+      {q: "Máy in văn phòng thường kết nối qua?", opts: ["USB/Network", "M.2", "SATA", "HDMI"], a: 0},
+      {q: "Webcam dùng để làm gì?", opts: ["Ghi hình/Video", "In ấn", "Lưu trữ", "Tăng tốc mạng"], a: 0},
+      {q: "Thiết bị ngoại vi nào dùng để nhập liệu bằng tay?", opts: ["Chuột", "Màn hình", "Máy in", "Switch"], a: 0}
+      ];
+  
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+
+  data.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-item';
+    div.style.marginBottom = '12px';
+    div.innerHTML = `
+      <p><b>Câu ${i + 1}:</b> ${q.q}</p>
+      ${q.opts.map((opt, j) => `
+        <label style="display:block; margin-left:10px;">
+          <input type="radio" name="q${i}" value="${j}"> ${opt}
+        </label>
+      `).join('')}
+    `;
+    container.appendChild(div);
+  });
+
+  document.getElementById('check-quiz').addEventListener('click', () => {
+    let correct = 0;
+    data.forEach((q, i) => {
+      const checked = document.querySelector(`input[name="q${i}"]:checked`);
+      if (checked && Number(checked.value) === q.a) correct++;
+    });
+    document.getElementById('quiz-result').innerHTML =
+      `✅ Bạn trả lời đúng ${correct}/${data.length} câu.`;
+  });
+}
+
+document.getElementById('open-quiz').addEventListener('click', () => {
+  document.getElementById('quiz-modal').style.display = 'block';
+  loadQuiz();
+});
+
+document.getElementById('close-quiz').addEventListener('click', () => {
+  document.getElementById('quiz-modal').style.display = 'none';
+});
+</script>
+
+</body>
+</html>
